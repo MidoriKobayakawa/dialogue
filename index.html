@@ -75,10 +75,44 @@
     z-index: -10; /* 🌟 背景のさらに奥に */
     overflow: hidden;
 }
+/* 🟢 吹き出しの本文 */
 .bubble-text {
     font-size: 16px;
-    line-height: 1.6; /* 行間を広くする */
-    white-space: pre-wrap; /* 改行を有効にする */
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* 🟢 Markdownの見出しのスタイルを適用 */
+.bubble-text h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.bubble-text h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.bubble-text h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+/* 🟢 リストのスタイルを適用 */
+.bubble-text ul, .bubble-text ol {
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+/* 🟢 リストの各項目の間隔を調整 */
+.bubble-text li {
+    margin-bottom: 4px;
 }
 
 .chat-bubble.user {
@@ -172,21 +206,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".math").forEach(function(el) {
-        katex.render(el.innerText, el);
-    });
-});
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<!-- 🚨 twemoji.js の読み込みを削除 -->
-<!-- <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script> -->
-
 <script>
 fetch('dialogue.json')
   .then(response => response.json())
@@ -197,18 +216,19 @@ fetch('dialogue.json')
 
       data.forEach(message => {
           if (message.speaker === previousSpeaker && lastBubbleText !== null) {
+              // 🟢 MarkdownをHTMLに変換
               lastBubbleText.innerHTML += "<br>" + marked.parse(message.text);
           } else {
               let bubble = document.createElement("div");
               bubble.classList.add("chat-bubble", message.speaker);
 
               let img = document.createElement("img");
-              img.src = "./images/" + message.icon;  // 🔥 画像のパスを修正
+              img.src = "./images/" + message.icon;
               img.alt = message.speaker;
 
               let text = document.createElement("div");
               text.classList.add("bubble-text");
-              text.innerHTML = marked.parse(message.text);
+              text.innerHTML = marked.parse(message.text); // 🔥 Markdownの変換
 
               bubble.appendChild(img);
               bubble.appendChild(text);
@@ -221,6 +241,7 @@ fetch('dialogue.json')
   })
   .catch(error => console.error("🚨 データの読み込みエラー:", error));
 </script>
+
 
 
 
