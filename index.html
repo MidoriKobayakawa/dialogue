@@ -28,7 +28,9 @@
     height: auto;
     filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8));
     animation: fall linear infinite, glow 3s infinite alternate;
-　　z-index: -1; /* 🌟 背景レイヤーへ移動 */
+　　z-index: -10; /* 🌟 背景レイヤーへ移動 */
+    pointer-events: none; /* 💡 クリックやスクロールの邪魔をしない */
+
 
 }
 
@@ -59,9 +61,19 @@
     display: flex;
     flex-direction: column;
     position: relative; /* 📌 必須！ */
-    z-index: 10; /* 🌟 チャットを手前に */
+    z-index: 100; /* 🌟 チャットを手前に */
 }
-
+/* 🌟 ペーパークリップの親要素を作り、背景固定 */
+.paperclip-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10; /* 🌟 背景のさらに奥に */
+    overflow: hidden;
+}
+        
 .chat-bubble {
     display: flex;
     align-items: center;
