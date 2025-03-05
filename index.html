@@ -85,33 +85,38 @@
 <body>
 
     <!-- ペーパークリップの降るエフェクト -->
- <script>
+<script>
     function createPaperclip() {
         let paperclip = document.createElement("img");
-        paperclip.src = "paperclip3.png"; // ペーパークリップの画像を指定
+        paperclip.src = "./paperclip3.png"; // 画像のパスを修正（カレントディレクトリを明示）
         paperclip.className = "paperclip";
 
         // 画面のランダムな位置に配置
         paperclip.style.position = "absolute";
         paperclip.style.left = Math.random() * 100 + "vw";
-        paperclip.style.top = "-100px"; // 画面外のもっと上からスタート
-        paperclip.style.width = "30px";
+        paperclip.style.top = "-50px"; // まずは画面外の-50pxで試す
+        paperclip.style.width = "40px";  // 大きくして視認しやすく
         paperclip.style.height = "auto";
-        paperclip.style.zIndex = "1"; 
+        paperclip.style.zIndex = "10"; // 背景に埋もれないように
 
         document.body.appendChild(paperclip);
 
-        // 落ちるアニメーション
+        // 落下アニメーションを適用
         let duration = Math.random() * 3 + 2; // 2秒〜5秒で落ちる
-        paperclip.style.transition = `transform ${duration}s linear`;
-        paperclip.style.transform = `translateY(${window.innerHeight + 100}px)`; // 画面の高さ+100pxまで落下
+        paperclip.style.transition = `top ${duration}s linear`;
+        setTimeout(() => {
+            paperclip.style.top = window.innerHeight + "px"; // 画面の高さまで落下
+        }, 50); // 少し遅らせてアニメーションが適用されるようにする
 
-        // 一定時間後に削除
-        setTimeout(() => { paperclip.remove(); }, duration * 1000);
+        // 落下後に削除
+        setTimeout(() => {
+            paperclip.remove();
+        }, duration * 1000 + 100);
     }
 
-    setInterval(createPaperclip, 200); // 200msごとに新しいクリップを落とす
+    setInterval(createPaperclip, 500); // 500msごとにクリップを落とす
 </script>
+
 
 
 
