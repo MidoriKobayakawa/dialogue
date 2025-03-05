@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const screenWidth = window.innerWidth;
-    const dropInterval = 3000; // 落ちる頻度を3分の1に調整
+    const dropInterval = 5000; // 落ちる頻度を3分の1に調整
 
     function createPaperclip() {
         const paperclip = document.createElement("img"); // 🔥 imgタグでペーパークリップを作成
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const startX = Math.random() * (screenWidth + 100) - 50; 
 
         paperclip.style.left = `${startX}px`; 
-        paperclip.style.top = "-50px";
+        paperclip.style.top = "-70px";
 
         container.appendChild(paperclip);
 
