@@ -39,6 +39,24 @@
     50% { filter: drop-shadow(2px 2px 10px rgba(192, 192, 192, 1)); }
     100% { filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8)); }
 }
+        @keyframes fall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh); /* 🔥 画面の下までしっかり落ちる */
+        opacity: 0;
+    }
+}
+
+.paperclip {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    background: white; /* 🔥 ペーパークリップの色 */
+    border-radius: 50%;
+}
+
 
 
 
