@@ -79,42 +79,48 @@
 /* 🟢 吹き出しの本文 */
 .bubble-text {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.4; /* 行間を狭くする（1.6 → 1.4） */
     white-space: pre-wrap;
 }
 
-/* 🟢 Markdownの見出しのスタイルを適用 */
+/* 🟢 Markdownの見出しの間隔を調整 */
 .bubble-text h1 {
     font-size: 22px;
     font-weight: bold;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin-top: 6px;  /* 🔥 間隔を狭く（12px → 6px） */
+    margin-bottom: 4px; /* 🔥 間隔を狭く（8px → 4px） */
 }
 
 .bubble-text h2 {
     font-size: 20px;
     font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 6px;
+    margin-top: 5px;  /* 🔥 間隔を狭く（10px → 5px） */
+    margin-bottom: 3px; /* 🔥 間隔を狭く（6px → 3px） */
 }
 
 .bubble-text h3 {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 8px;
-    margin-bottom: 4px;
+    margin-top: 4px;  /* 🔥 間隔を狭く（8px → 4px） */
+    margin-bottom: 2px; /* 🔥 間隔を狭く（4px → 2px） */
 }
 
-/* 🟢 リストのスタイルを適用 */
+/* 🟢 本文の段落（pタグ）の間隔を狭くする */
+.bubble-text p {
+    margin-top: 2px;  /* 🔥 以前の半分以下にする */
+    margin-bottom: 2px;  /* 🔥 以前の半分以下にする */
+}
+
+/* 🟢 リストの間隔を狭く */
 .bubble-text ul, .bubble-text ol {
-    margin-left: 20px;
-    padding-left: 20px;
+    margin-left: 15px; /* 🔥 少しだけ余白を減らす */
+    padding-left: 15px;
 }
 
-/* 🟢 リストの各項目の間隔を調整 */
 .bubble-text li {
-    margin-bottom: 4px;
+    margin-bottom: 2px; /* 🔥 リスト項目の間隔を狭く（4px → 2px） */
 }
+
 
 .chat-bubble.user {
     background-color: #007aff;
