@@ -28,6 +28,8 @@
     height: auto;
     filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8));
     animation: fall linear infinite, glow 3s infinite alternate;
+　　z-index: -1; /* 🌟 背景レイヤーへ移動 */
+
 }
 
 @keyframes glow {
@@ -56,6 +58,8 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
+    position: relative; /* 📌 必須！ */
+    z-index: 10; /* 🌟 チャットを手前に */
 }
 
 .chat-bubble {
