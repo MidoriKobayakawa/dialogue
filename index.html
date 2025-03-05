@@ -93,13 +93,14 @@
 
 /* 🔥 h2（小見出し）に確実にインデントを適用 */
 .bubble-text h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 3px;
-    margin-bottom: 2px;
-    padding-left: 20px; /* 🔥 インデントを明確に適用 */
-    border-left: 3px solid rgba(255, 255, 255, 0.3); /* 🔥 見やすくするために左にラインを追加（オプション） */
+    font-size: 20px !important;
+    font-weight: bold !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    padding-left: 20px !important; /* 🔥 確実にインデント */
+    text-indent: 0px !important; /* 🔥 インデントの競合をなくす */
 }
+
 
 
 
@@ -118,18 +119,19 @@
 
 /* 🔥 箇条書きリスト（ul, ol）の余白を完全に削除 */
 .bubble-text ul, .bubble-text ol {
-    margin: 0px !important;  /* 🔥 上下の余白を完全削除（`!important` で強制適用） */
-    padding: 0px !important; /* 🔥 左の余白もゼロに（リストマーカー位置調整のため） */
-    list-style-position: outside; /* 🔥 リストマーカーを適切に配置 */
+    margin: 0px !important; /* 🔥 上下の余白をゼロに */
+    padding-left: 16px !important; /* 🔥 左の余白を調整 */
+    list-style-position: outside !important;
 }
 
-/* 🔥 各リスト項目（li）の余白と行間を完全になくす */
+/* 🔥 各リスト項目（li）の間隔を完全になくす */
 .bubble-text li {
-    margin: 0px !important; /* 🔥 `li` の余白を完全削除 */
+    margin: 0px !important; /* 🔥 上下の余白をゼロ */
     padding: 0px !important;
-    line-height: 1.0 !important; /* 🔥 行間を最小限に（1.0） */
-    display: block; /* 🔥 `inline-block` の影響を排除し、余白を減らす */
+    line-height: 1.0 !important; /* 🔥 行間を最小限（1.1 → 1.0） */
+    display: block !important; /* 🔥 余計な改行を防ぐ */
 }
+
 
 
 
