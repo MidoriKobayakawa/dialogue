@@ -168,20 +168,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-    <script>
+<script>
 fetch('dialogue.json')
   .then(response => response.json())
   .then(data => {
       let chatContainer = document.querySelector('.chat-container');
       let previousSpeaker = null;
-      let lastBubble = null;
+      let lastBubbleText = null;
 
       data.forEach(message => {
           if (message.speaker === previousSpeaker) {
-              // 同じ話者なら、前の吹き出しに追加
+              // 同じ話者なら、前の吹き出しに改行してテキストを追加
               let br = document.createElement("br");
-              lastBubble.appendChild(br);
-              lastBubble.appendChild(document.createTextNode(message.text));
+              lastBubbleText.appendChild(br);
+              lastBubbleText.appendChild(document.createTextNode(message.text));
           } else {
               // 新しい吹き出しを作る
               let bubble = document.createElement("div");
@@ -191,17 +191,23 @@ fetch('dialogue.json')
               img.src = message.icon;
               img.alt = message.speaker;
 
+              let text = document.createElement("div");
+              text.classList.add("bubble-text");
+              text.appendChild(document.createTextNode(message.text));
+
               bubble.appendChild(img);
-              bubble.appendChild(document.createTextNode(message.text));
+              bubble.appendChild(text);
               chatContainer.appendChild(bubble);
 
               // 状態を更新
               previousSpeaker = message.speaker;
-              lastBubble = bubble;
+              lastBubbleText = text;
           }
       });
-  });
+  })
+  .catch(error => console.error("データの読み込みエラー:", error));
 </script>
+
 
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
 <script>
