@@ -184,6 +184,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- 🚨 twemoji.js の読み込みを削除 -->
+<!-- <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script> -->
+
 <script>
 fetch('dialogue.json')
   .then(response => response.json())
@@ -194,26 +197,23 @@ fetch('dialogue.json')
 
       data.forEach(message => {
           if (message.speaker === previousSpeaker && lastBubbleText !== null) {
-              // 🔥 MarkdownをHTMLに変換
               lastBubbleText.innerHTML += "<br>" + marked.parse(message.text);
           } else {
-              // ✅ 新しい吹き出しを作る
               let bubble = document.createElement("div");
               bubble.classList.add("chat-bubble", message.speaker);
 
               let img = document.createElement("img");
-              img.src = message.icon;
+              img.src = "./images/" + message.icon;  // 🔥 画像のパスを修正
               img.alt = message.speaker;
 
               let text = document.createElement("div");
               text.classList.add("bubble-text");
-              text.innerHTML = marked.parse(message.text); // 🔥 Markdown変換
+              text.innerHTML = marked.parse(message.text);
 
               bubble.appendChild(img);
               bubble.appendChild(text);
               chatContainer.appendChild(bubble);
 
-              // 🔥 lastBubbleText を更新
               previousSpeaker = message.speaker;
               lastBubbleText = text;
           }
@@ -221,7 +221,6 @@ fetch('dialogue.json')
   })
   .catch(error => console.error("🚨 データの読み込みエラー:", error));
 </script>
-
 
 
 
