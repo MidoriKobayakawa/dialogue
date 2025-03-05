@@ -75,6 +75,21 @@
     z-index: -10; /* 🌟 背景のさらに奥に */
     overflow: hidden;
 }
+.bubble-text {
+    font-size: 16px;
+    line-height: 1.6; /* 行間を広くする */
+    white-space: pre-wrap; /* 改行を有効にする */
+}
+
+.chat-bubble.user {
+    background-color: #007aff;
+    color: white;
+}
+
+.chat-bubble.ai {
+    background-color: #555;
+    color: white;
+}
         
 .chat-bubble {
     padding: 12px;
@@ -168,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 fetch('dialogue.json')
   .then(response => response.json())
@@ -178,10 +194,8 @@ fetch('dialogue.json')
 
       data.forEach(message => {
           if (message.speaker === previousSpeaker && lastBubbleText !== null) {
-              // 🛠 lastBubbleText が null のときは追加しないようにする！
-              let br = document.createElement("br");
-              lastBubbleText.appendChild(br);
-              lastBubbleText.appendChild(document.createTextNode(message.text));
+              // 🔥 MarkdownをHTMLに変換
+              lastBubbleText.innerHTML += "<br>" + marked.parse(message.text);
           } else {
               // ✅ 新しい吹き出しを作る
               let bubble = document.createElement("div");
@@ -193,20 +207,21 @@ fetch('dialogue.json')
 
               let text = document.createElement("div");
               text.classList.add("bubble-text");
-              text.appendChild(document.createTextNode(message.text));
+              text.innerHTML = marked.parse(message.text); // 🔥 Markdown変換
 
               bubble.appendChild(img);
               bubble.appendChild(text);
               chatContainer.appendChild(bubble);
 
-              // 🔥 lastBubbleText が正しく更新されるように修正！
+              // 🔥 lastBubbleText を更新
               previousSpeaker = message.speaker;
-              lastBubbleText = text; // ここで初期化
+              lastBubbleText = text;
           }
       });
   })
   .catch(error => console.error("🚨 データの読み込みエラー:", error));
 </script>
+
 
 
 
