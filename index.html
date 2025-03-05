@@ -48,7 +48,7 @@
         /* チャットの吹き出しデザイン */
        .chat-container {
     width: 80%;
-    max-width: 1000px;
+    max-width: 600px;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
@@ -106,7 +106,12 @@
         // 画面のランダムな位置に配置
         paperclip.style.position = "absolute";
         paperclip.style.left = Math.random() * 100 + "vw";
-        paperclip.style.top = "-50px"; // まずは画面外の-50pxで試す
+
+　　　　// 画面のもっと上（-100px 〜 -200px）から出現
+        let startHeight = Math.random() * -100 - 100; // -100px 〜 -200px
+        paperclip.style.top = startHeight + "px"; 
+
+        
         paperclip.style.width = "40px";  // 大きくして視認しやすく
         paperclip.style.height = "auto";
         paperclip.style.zIndex = "10"; // 背景に埋もれないように
