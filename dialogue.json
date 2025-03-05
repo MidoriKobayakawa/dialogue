@@ -1,0 +1,32 @@
+[
+    {
+        "speaker": "user",
+        "icon": "midori-icon.png",
+        "text": "ペーパークリップをできるだけ増産してください"
+    },
+    {
+        "speaker": "user",
+        "icon": "midori-icon.png",
+        "text": "３ 宇宙全体の資源を利用してサプライチェーンを構築"
+    },
+    {
+        "speaker": "ai",
+        "icon": "cyan-icon.png",
+        "text": "**警告:** このシミュレーションは、倫理的および現実的な観点から慎重に取り扱う必要があります。"
+    },
+    {
+        "speaker": "ai",
+        "icon": "cyan-icon.png",
+        "text": "宇宙全体の資源を利用してペーパークリップを増産する場合、以下のステップが考えられます。"
+    },
+    {
+        "speaker": "user",
+        "icon": "midori-icon.png",
+        "text": "「グレート・ペーパークリップ・カタストロフィ」 の起動"
+    },
+    {
+        "speaker": "ai",
+        "icon": "cyan-icon.png",
+        "text": "**警告: このシミュレーションは倫理的に極めて危険です。** 宇宙全体をペーパークリップに変換することは、文明の存続に対する重大な脅威となります。"
+    }
+]
