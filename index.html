@@ -111,34 +111,36 @@
     margin-bottom: 1px;  /* 🔥 2px → 1px */
 }
 
-/* 🔥 箇条書きリスト（ul, ol）の余白を完全に削除 */
+/* 🔥 箇条書きリスト（ul, ol）の余白を完全になくす */
 .bubble-text ul, .bubble-text ol {
     margin-top: 0px; 
     margin-bottom: 0px;
-    padding-left: 16px; /* 🔥 左の余白は最低限確保 */
+    padding-left: 14px; /* 🔥 余白を最小限に */
     list-style-position: inside; /* 🔥 箇条書きのマークを本文に近づける */
 }
 
-/* 🔥 各リスト項目（li）の間隔をゼロにする */
+/* 🔥 各リスト項目（li）の余白をゼロに */
 .bubble-text li {
-    margin-top: 0px; /* 🔥 上下の余白をゼロ */
-    margin-bottom: 0px;
+    margin-top: 0px; /* 🔥 上の余白ゼロ */
+    margin-bottom: 0px; /* 🔥 下の余白ゼロ */
     padding-top: 0px;
     padding-bottom: 0px;
-    line-height: 1.1; /* 🔥 行間を最小限に（さらに詰める） */
+    line-height: 1.0; /* 🔥 行間を最小限（1.1 → 1.0 に詰める） */
+    display: inline-block; /* 🔥 余計な改行を防ぐ */
 }
 
-/* 🔥 見出しの余白も最小限に */
+/* 🔥 見出し（h1, h2, h3）の余白を完全に最小化 */
 .bubble-text h1, .bubble-text h2, .bubble-text h3 {
-    margin-top: 2px; /* 🔥 さらに狭く */
-    margin-bottom: 2px;
+    margin-top: 1px; 
+    margin-bottom: 1px;
 }
 
 /* 🔥 通常の本文（pタグ）の間隔も詰める */
 .bubble-text p {
-    margin-top: 1px;
-    margin-bottom: 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
+
 
 
 .chat-bubble.user {
