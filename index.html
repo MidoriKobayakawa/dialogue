@@ -203,40 +203,38 @@
 <div class="paperclip-container"></div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector(".background-container"); // ペーパークリップを降らせる領域
+    const screenWidth = window.innerWidth; // 画面の横幅
+    const dropInterval = 3000; // 🔥 落ちる頻度（ミリ秒）→ 3倍の間隔に調整（現在の3分の1）
+
     function createPaperclip() {
-        let paperclip = document.createElement("img");
-        paperclip.src = "./paperclip3.png"; // 画像のパスを確認
-        paperclip.className = "paperclip";
+        const paperclip = document.createElement("div");
+        paperclip.classList.add("paperclip");
 
-        // ランダムな横位置
-        paperclip.style.position = "absolute";
-        paperclip.style.left = Math.random() * 100 + "vw";
+        // 🔥 画面の外（-50px から +50px の範囲）から落とす
+        const startX = Math.random() * (screenWidth + 100) - 50; 
 
-        // 画面のもっと上（-100px 〜 -200px）から出現
-        let startHeight = Math.random() * -100 - 100; // -100px 〜 -200px
-        paperclip.style.top = startHeight + "px"; 
+        paperclip.style.left = `${startX}px`; 
+        paperclip.style.top = "-50px"; // 画面外の上から出現
 
-        paperclip.style.width = "40px"; 
-        paperclip.style.height = "auto";
+        container.appendChild(paperclip);
 
-        // ペーパークリップを背景レイヤーへ追加
-        document.querySelector(".paperclip-container").appendChild(paperclip);
+        // 🔥 アニメーション
+        const fallDuration = 5 + Math.random() * 3; // 落ちるスピードをランダム化
+        paperclip.style.animation = `fall ${fallDuration}s linear forwards`;
 
-        // 落下アニメーション
-        let duration = Math.random() * 3 + 2; // 2秒〜5秒で落ちる
-        paperclip.style.transition = `top ${duration}s linear`;
-        setTimeout(() => {
-            paperclip.style.top = window.innerHeight + "px"; // 画面の高さまで落下
-        }, 50);
-
-        // 落下後に削除
+        // アニメーション終了後に削除
         setTimeout(() => {
             paperclip.remove();
-        }, duration * 1000 + 100);
+        }, fallDuration * 1000);
     }
 
-    setInterval(createPaperclip, 500); // 500msごとに新しいクリップを生成
+    // 🔥 落ちる頻度を3分の1に変更（現在の3倍の間隔で落とす）
+    setInterval(createPaperclip, dropInterval);
+});
 </script>
+
 
     <div class="chat-container">
     
