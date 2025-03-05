@@ -91,12 +91,16 @@
     margin-bottom: 2px; /* 🔥 4px → 2px */
 }
 
+/* 🔥 h2（小見出し）にインデントを追加 */
 .bubble-text h2 {
     font-size: 20px;
     font-weight: bold;
-    margin-top: 3px;  /* 🔥 5px → 3px */
-    margin-bottom: 2px; /* 🔥 3px → 2px */
+    margin-top: 3px;
+    margin-bottom: 2px;
+    padding-left: 16px; /* 🔥 左側にインデントを追加 */
+    text-indent: -16px; /* 🔥 見出し全体を揃えつつ、インデントを適用 */
 }
+
 
 .bubble-text h3 {
     font-size: 18px;
