@@ -113,33 +113,34 @@
 <body>
 
     <!-- ペーパークリップの降るエフェクト -->
+<div class="paperclip-container"></div>
+
 <script>
     function createPaperclip() {
         let paperclip = document.createElement("img");
-        paperclip.src = "./paperclip3.png"; // 画像のパスを修正（カレントディレクトリを明示）
+        paperclip.src = "./paperclip3.png"; // 画像のパスを確認
         paperclip.className = "paperclip";
 
-        // 画面のランダムな位置に配置
+        // ランダムな横位置
         paperclip.style.position = "absolute";
         paperclip.style.left = Math.random() * 100 + "vw";
 
-　　　　// 画面のもっと上（-100px 〜 -200px）から出現
+        // 画面のもっと上（-100px 〜 -200px）から出現
         let startHeight = Math.random() * -100 - 100; // -100px 〜 -200px
         paperclip.style.top = startHeight + "px"; 
 
-        
-        paperclip.style.width = "40px";  // 大きくして視認しやすく
+        paperclip.style.width = "40px"; 
         paperclip.style.height = "auto";
-        paperclip.style.zIndex = "10"; // 背景に埋もれないように
 
-        document.body.appendChild(paperclip);
+        // ペーパークリップを背景レイヤーへ追加
+        document.querySelector(".paperclip-container").appendChild(paperclip);
 
-        // 落下アニメーションを適用
+        // 落下アニメーション
         let duration = Math.random() * 3 + 2; // 2秒〜5秒で落ちる
         paperclip.style.transition = `top ${duration}s linear`;
         setTimeout(() => {
             paperclip.style.top = window.innerHeight + "px"; // 画面の高さまで落下
-        }, 50); // 少し遅らせてアニメーションが適用されるようにする
+        }, 50);
 
         // 落下後に削除
         setTimeout(() => {
@@ -147,9 +148,8 @@
         }, duration * 1000 + 100);
     }
 
-    setInterval(createPaperclip, 500); // 500msごとにクリップを落とす
+    setInterval(createPaperclip, 500); // 500msごとに新しいクリップを生成
 </script>
-
 
 
 
