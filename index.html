@@ -177,13 +177,13 @@ fetch('dialogue.json')
       let lastBubbleText = null;
 
       data.forEach(message => {
-          if (message.speaker === previousSpeaker && lastBubbleText) {
-              // 🔥 lastBubbleText が null でないときだけ追加！
+          if (message.speaker === previousSpeaker && lastBubbleText !== null) {
+              // 🛠 lastBubbleText が null のときは追加しないようにする！
               let br = document.createElement("br");
               lastBubbleText.appendChild(br);
               lastBubbleText.appendChild(document.createTextNode(message.text));
           } else {
-              // 新しい吹き出しを作る
+              // ✅ 新しい吹き出しを作る
               let bubble = document.createElement("div");
               bubble.classList.add("chat-bubble", message.speaker);
 
@@ -199,14 +199,15 @@ fetch('dialogue.json')
               bubble.appendChild(text);
               chatContainer.appendChild(bubble);
 
-              // 🟢 ここで `lastBubbleText` を更新
+              // 🔥 lastBubbleText が正しく更新されるように修正！
               previousSpeaker = message.speaker;
-              lastBubbleText = text;
+              lastBubbleText = text; // ここで初期化
           }
       });
   })
-  .catch(error => console.error("データの読み込みエラー:", error));
+  .catch(error => console.error("🚨 データの読み込みエラー:", error));
 </script>
+
 
 
 
