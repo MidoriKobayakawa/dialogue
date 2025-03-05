@@ -177,8 +177,8 @@ fetch('dialogue.json')
       let lastBubbleText = null;
 
       data.forEach(message => {
-          if (message.speaker === previousSpeaker) {
-              // 同じ話者なら、前の吹き出しに改行してテキストを追加
+          if (message.speaker === previousSpeaker && lastBubbleText) {
+              // 🔥 lastBubbleText が null でないときだけ追加！
               let br = document.createElement("br");
               lastBubbleText.appendChild(br);
               lastBubbleText.appendChild(document.createTextNode(message.text));
@@ -199,7 +199,7 @@ fetch('dialogue.json')
               bubble.appendChild(text);
               chatContainer.appendChild(bubble);
 
-              // 状態を更新
+              // 🟢 ここで `lastBubbleText` を更新
               previousSpeaker = message.speaker;
               lastBubbleText = text;
           }
@@ -207,6 +207,7 @@ fetch('dialogue.json')
   })
   .catch(error => console.error("データの読み込みエラー:", error));
 </script>
+
 
 
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
