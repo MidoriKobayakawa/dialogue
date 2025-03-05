@@ -89,19 +89,29 @@
 <body>
 
     <!-- ペーパークリップの降るエフェクト -->
-    <script>
+   <script>
     function createPaperclip() {
         let paperclip = document.createElement("img");
-        paperclip.src = "paperclip.jpg"; // ここにリアルなペーパークリップ画像のURL
+        paperclip.src = "paperclip.jpg"; // ここにペーパークリップの画像パス
         paperclip.className = "paperclip";
         paperclip.style.left = Math.random() * 100 + "vw";
-        paperclip.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        paperclip.style.width = "30px";  // サイズ調整
+        paperclip.style.height = "auto";
+        paperclip.style.position = "absolute";
+        paperclip.style.top = "-50px";
+        paperclip.style.zIndex = "1"; // 他の要素に隠れないようにする
         document.body.appendChild(paperclip);
-        setTimeout(() => { paperclip.remove(); }, 5000);
+
+        let duration = Math.random() * 3 + 2; // 2~5秒間で落ちる
+        paperclip.style.transition = `transform ${duration}s linear`;
+        paperclip.style.transform = "translateY(100vh)";
+
+        setTimeout(() => { paperclip.remove(); }, duration * 1000);
     }
 
     setInterval(createPaperclip, 200);
 </script>
+
 
 
     <!-- チャットボックス -->
