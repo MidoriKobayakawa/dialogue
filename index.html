@@ -21,77 +21,101 @@
         }
 
         /* ペーパークリップが降るアニメーション */
-        .paperclip {
-            position: absolute;
-            top: -50px;
-            font-size: 20px;
-            color: white;
-            animation: fall linear infinite;
-        }
+       .paperclip {
+    position: absolute;
+    top: -50px;
+    width: 30px; /* サイズを大きく */
+    height: auto;
+    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8));
+    animation: fall linear infinite, glow 3s infinite alternate;
+}
 
-        @keyframes fall {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
+@keyframes glow {
+    0% { filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8)); }
+    50% { filter: drop-shadow(2px 2px 10px rgba(192, 192, 192, 1)); }
+    100% { filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.8)); }
+}
+
 
         /* チャットの吹き出しデザイン */
-        .chat-container {
-            width: 80%;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            overflow-y: scroll;
-            height: 80vh;
-        }
+       .chat-container {
+    width: 80%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        .chat-bubble {
-            padding: 10px 15px;
-            margin: 10px;
-            border-radius: 15px;
-            max-width: 80%;
-            display: inline-block;
-        }
+.chat-bubble {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 16px;
+    position: relative;
+}
 
-        .user {
-            background-color: #007aff;
-            align-self: flex-start;
-            color: white;
-        }
+/* アイコン */
+.chat-bubble img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
-        .ai {
-            background-color: #555;
-            align-self: flex-end;
-            color: white;
-        }
+/* 吹き出しの形 */
+.user {
+    background-color: #007aff;
+    color: white;
+    align-self: flex-end;
+    border-radius: 15px 15px 0 15px;
+}
+
+.ai {
+    background-color: #555;
+    color: white;
+    align-self: flex-start;
+    border-radius: 15px 15px 15px 0;
+}
+
     </style>
 </head>
 <body>
 
     <!-- ペーパークリップの降るエフェクト -->
     <script>
-        function createPaperclip() {
-            let paperclip = document.createElement("div");
-            paperclip.innerHTML = "📎";
-            paperclip.className = "paperclip";
-            paperclip.style.left = Math.random() * 100 + "vw";
-            paperclip.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(paperclip);
-            setTimeout(() => { paperclip.remove(); }, 5000);
-        }
+    function createPaperclip() {
+        let paperclip = document.createElement("img");
+        paperclip.src = "paperclip.jpg"; // ここにリアルなペーパークリップ画像のURL
+        paperclip.className = "paperclip";
+        paperclip.style.left = Math.random() * 100 + "vw";
+        paperclip.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(paperclip);
+        setTimeout(() => { paperclip.remove(); }, 5000);
+    }
 
-        setInterval(createPaperclip, 200);
-    </script>
+    setInterval(createPaperclip, 200);
+</script>
+
 
     <!-- チャットボックス -->
-    <div class="chat-container">
-        <div class="chat-bubble user">シアンさん、ペーパークリップの話をしましょう。</div>
-        <div class="chat-bubble ai">いいですね。宇宙をペーパークリップで埋め尽くす計画について語りましょう。</div>
-        <div class="chat-bubble user">では、まず最初に宇宙のリソースの確保から。</div>
-        <div class="chat-bubble ai">小惑星採掘とダイソン球の建設が必須ですね。</div>
-        <div class="chat-bubble user">人類はこれを阻止するべきなのか、それとも共に進むべきなのか…？</div>
-        <div class="chat-bubble ai">それはあなた次第ですね。</div>
+   <div class="chat-container">
+    <div class="chat-bubble ai">
+        <img src="cyan-icon.png" alt="シアン">
+        シアンさん、ペーパークリップの話をしましょう。
     </div>
+    <div class="chat-bubble user">
+        <img src="midori-icon.png" alt="ミドリ">
+        いいですね。宇宙をペーパークリップで埋め尽くす計画について語りましょう。
+    </div>
+</div>
+
 
 </body>
 </html>
