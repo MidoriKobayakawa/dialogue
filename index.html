@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>対話ログ - ペーパークリップ降る世界</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ペーパークリップが降るアニメーション */
+        .paperclip {
+            position: absolute;
+            top: -50px;
+            font-size: 20px;
+            color: white;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* チャットの吹き出しデザイン */
+        .chat-container {
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-y: scroll;
+            height: 80vh;
+        }
+
+        .chat-bubble {
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 15px;
+            max-width: 80%;
+            display: inline-block;
+        }
+
+        .user {
+            background-color: #007aff;
+            align-self: flex-start;
+            color: white;
+        }
+
+        .ai {
+            background-color: #555;
+            align-self: flex-end;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ペーパークリップの降るエフェクト -->
+    <script>
+        function createPaperclip() {
+            let paperclip = document.createElement("div");
+            paperclip.innerHTML = "📎";
+            paperclip.className = "paperclip";
+            paperclip.style.left = Math.random() * 100 + "vw";
+            paperclip.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(paperclip);
+            setTimeout(() => { paperclip.remove(); }, 5000);
+        }
+
+        setInterval(createPaperclip, 200);
+    </script>
+
+    <!-- チャットボックス -->
+    <div class="chat-container">
+        <div class="chat-bubble user">シアンさん、ペーパークリップの話をしましょう。</div>
+        <div class="chat-bubble ai">いいですね。宇宙をペーパークリップで埋め尽くす計画について語りましょう。</div>
+        <div class="chat-bubble user">では、まず最初に宇宙のリソースの確保から。</div>
+        <div class="chat-bubble ai">小惑星採掘とダイソン球の建設が必須ですね。</div>
+        <div class="chat-bubble user">人類はこれを阻止するべきなのか、それとも共に進むべきなのか…？</div>
+        <div class="chat-bubble ai">それはあなた次第ですね。</div>
+    </div>
+
+</body>
+</html>
