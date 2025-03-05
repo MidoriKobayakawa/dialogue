@@ -222,9 +222,15 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    const container = document.querySelector(".background-container"); // ペーパークリップを降らせる領域
+    const container = document.querySelector(".background-container"); // 背景コンテナを取得
+
+    if (!container) { 
+        console.error("🚨 エラー: .background-container が見つかりません！");
+        return; // これ以上処理を進めずエラーを防ぐ
+    }
+
     const screenWidth = window.innerWidth; // 画面の横幅
-    const dropInterval = 3000; // 🔥 落ちる頻度（ミリ秒）→ 3倍の間隔に調整（現在の3分の1）
+    const dropInterval = 3000; // 🔥 落ちる頻度を3倍の間隔に調整
 
     function createPaperclip() {
         const paperclip = document.createElement("div");
@@ -236,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
         paperclip.style.left = `${startX}px`; 
         paperclip.style.top = "-50px"; // 画面外の上から出現
 
-        container.appendChild(paperclip);
+        container.appendChild(paperclip); // 🚨 containerがnullなら実行されないよう修正
 
         // 🔥 アニメーション
         const fallDuration = 5 + Math.random() * 3; // 落ちるスピードをランダム化
@@ -252,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(createPaperclip, dropInterval);
 });
 </script>
+
 
 
     <div class="chat-container">
