@@ -162,23 +162,36 @@ fetch('dialogue.json')
   .then(response => response.json())
   .then(data => {
       let chatContainer = document.querySelector('.chat-container');
+      let previousSpeaker = null;
+      let lastBubble = null;
+
       data.forEach(message => {
-          let bubble = document.createElement("div");
-          bubble.classList.add("chat-bubble", message.speaker);
+          if (message.speaker === previousSpeaker) {
+              // 同じ話者なら、前の吹き出しに追加
+              let br = document.createElement("br");
+              lastBubble.appendChild(br);
+              lastBubble.appendChild(document.createTextNode(message.text));
+          } else {
+              // 新しい吹き出しを作る
+              let bubble = document.createElement("div");
+              bubble.classList.add("chat-bubble", message.speaker);
 
-          let img = document.createElement("img");
-          img.src = message.icon;
-          img.alt = message.speaker;
+              let img = document.createElement("img");
+              img.src = message.icon;
+              img.alt = message.speaker;
 
-          let text = document.createElement("div");
-          text.innerHTML = marked.parse(message.text); // 🔥 MarkdownをHTMLに変換！
+              bubble.appendChild(img);
+              bubble.appendChild(document.createTextNode(message.text));
+              chatContainer.appendChild(bubble);
 
-          bubble.appendChild(img);
-          bubble.appendChild(text);
-          chatContainer.appendChild(bubble);
+              // 状態を更新
+              previousSpeaker = message.speaker;
+              lastBubble = bubble;
+          }
       });
   });
 </script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.js"></script>
 <script>
