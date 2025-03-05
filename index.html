@@ -111,15 +111,20 @@
     margin-bottom: 1px;  /* 🔥 2px → 1px */
 }
 
-/* 🟢 リストの間隔をさらに狭く */
+/* 🔹 箇条書きリストの間隔を詰める */
 .bubble-text ul, .bubble-text ol {
-    margin-left: 12px; /* 🔥 15px → 12px */
-    padding-left: 12px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 16px; /* 🔥 左側の余白は少しだけ確保 */
 }
 
+/* 🔹 各リスト項目 (`li`) の間隔を最小に */
 .bubble-text li {
-    margin-bottom: 1px; /* 🔥 2px → 1px */
+    margin-bottom: 0px; /* 🔥 余白ゼロ（間隔なし） */
+    padding-bottom: 0px;
+    line-height: 1.2; /* 🔥 行間を詰める（デフォルト1.6 → 1.2） */
 }
+
 
 
 
