@@ -20,23 +20,23 @@
             position: relative;
         }
 
-  .paperclip {
-    position: absolute;
-    width: auto; /* 🔥 クリップのサイズ調整（必要に応じて変更） */
-    height: auto;
-    user-select: none;
-    pointer-events: none;
-}
-
-/* 🔥 落ちるアニメーション */
+ 
 @keyframes fall {
     from {
         transform: translateY(0);
     }
     to {
-        transform: translateY(100vh);
+        transform: translateY(100vh); /* 🔥 画面の下までしっかり落ちる */
         opacity: 0;
     }
+}
+
+.paperclip {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    background: white; /* 🔥 ペーパークリップの色 */
+    border-radius: 50%;
 }
 
 
