@@ -77,15 +77,13 @@
 }
         
 .chat-bubble {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    max-width: 80%;
-    padding: 10px;
-    border-radius: 15px;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
     font-size: 16px;
-    position: relative;
+    background: rgba(255, 255, 255, 0.1);
 }
+
 
 /* アイコン */
 .chat-bubble img {
@@ -158,6 +156,7 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 fetch('dialogue.json')
   .then(response => response.json())
@@ -166,17 +165,37 @@ fetch('dialogue.json')
       data.forEach(message => {
           let bubble = document.createElement("div");
           bubble.classList.add("chat-bubble", message.speaker);
-          
+
           let img = document.createElement("img");
           img.src = message.icon;
           img.alt = message.speaker;
-          
+
+          let text = document.createElement("div");
+          text.innerHTML = marked.parse(message.text); // 🔥 MarkdownをHTMLに変換！
+
           bubble.appendChild(img);
-          bubble.appendChild(document.createTextNode(message.text));
+          bubble.appendChild(text);
           chatContainer.appendChild(bubble);
       });
   });
-</script>  
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".math").forEach(function(el) {
+        katex.render(el.innerText, el);
+    });
+});
+</script>
+
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.innerHTML = twemoji.parse(document.body.innerHTML);
+});
+</script>
+
 
 
 
